@@ -11,13 +11,15 @@ services:
     volumes:
       - '.:/product-register'
     environment:
-      - 'DATABASE_PASSWORD=postgres'
+      # - 'POSTGRES_DB=product-register_development'
+      - 'POSTGRES_USER=postgres'
+      - 'POSTGRES_PASSWORD=postgres'
     tty: true
     stdin_open: true
     depends_on:
       - db
-    links:
-      - db
+    # links:
+    #   - db
 
   db:
     image: postgres
@@ -26,4 +28,5 @@ services:
     environment:
       - 'POSTGRES_USER=postgres'
       - 'POSTGRES_PASSWORD=postgres'
+      # - 'POSTGRES_DB=product-register_development'
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
